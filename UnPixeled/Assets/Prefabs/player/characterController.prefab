@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 15
+  dashSpeed: 100
   playerModel: {fileID: 4883045800604731157}
   weaponCollider: {fileID: 6971157386892405992}
 --- !u!114 &1351821986608748253
@@ -66,8 +67,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageText: {fileID: 2662551291732197785, guid: 0dac89b3bea96124498ad3b7078d833b, type: 3}
   health: 100
+  healthRegeneration: 0
   expirience: 0
   energy: 100
+  energyUseForDash: 100
+  energyRegeneration: 8
 --- !u!54 &260174969
 Rigidbody:
   m_ObjectHideFlags: 0

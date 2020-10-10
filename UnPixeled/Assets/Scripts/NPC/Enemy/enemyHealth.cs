@@ -6,13 +6,18 @@ public class enemyHealth : MonoBehaviour
 {
     public float health = 100;
     public TextMesh damageText;
+    Rigidbody rb;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-
         if (other.tag == "Weapon")
         {
-            healthDamage(50);
+            healthDamage(20);
         }
     }
 
@@ -26,7 +31,7 @@ public class enemyHealth : MonoBehaviour
 
     void healthDamage (float damage)
     {
-
+        this.transform.Translate(0, 0, -2);
         showFloatingText(damage);
         health -= damage;
     }

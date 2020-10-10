@@ -9,6 +9,9 @@ public class meleeEnemy : MonoBehaviour
     public float lookRadius = 100.0f;
     public float damage = 1;
 
+    public float attackDelay = 100;
+    float lastAttacked = -9999;
+
     playerController player;
     NavMeshAgent npc;
 
@@ -30,13 +33,21 @@ public class meleeEnemy : MonoBehaviour
 
             if (distance <= npc.stoppingDistance)
             {
-                player.GetComponent<playerStats>().healtHit(damage);
+                Attack();
             }
         }
-
     }
 
-    void OnDrawGizmosSelected ()
+    private void Attack()
+    { //Call this in OnTriggerStay if the colliding gameObject is the player
+        if (Time.time > lastAttacked + attackDelay)
+        {
+            player.GetComponent<playerStats>().dropStat(1, damage);
+            lastAttacked = Time.time;
+        }
+    }
+
+        void OnDrawGizmosSelected ()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, lookRadius);

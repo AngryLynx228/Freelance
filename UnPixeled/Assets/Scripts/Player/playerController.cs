@@ -10,6 +10,8 @@ public class playerController : MonoBehaviour
 
     //Player
     [SerializeField] public float playerSpeed;
+    [SerializeField] public float dashSpeed;
+    float speed;
     public GameObject playerModel;
 
     //Players weapon
@@ -26,6 +28,7 @@ public class playerController : MonoBehaviour
     {
         //initialize input
         enableInput = true;
+        speed = playerSpeed;
 
         //initalize player's weapon
         attackCollider = weaponCollider.GetComponent<BoxCollider>();
@@ -42,6 +45,8 @@ public class playerController : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(speed);
+
         //inputs
         if (enableInput == true)
         {
@@ -52,9 +57,13 @@ public class playerController : MonoBehaviour
             Vector3 movement = transform.right * moveX + transform.forward * moveZ;
             movement = movement.normalized * Time.deltaTime;
 
-            charController.Move(movement * playerSpeed);
+            charController.Move(movement * speed);
 
 
+            if (Input.GetKey(KeyCode.Space) != true)
+            {
+                GetComponent<playerStats>().addStat(3, 0);
+            }
 
             //Animation_____________________________________________________________________________________________________________
             if (moveX != 0 || moveZ != 0)
@@ -62,6 +71,19 @@ public class playerController : MonoBehaviour
                 playerAnim.SetInteger("condition", 1);
                 float angle = Mathf.Atan2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * Mathf.Rad2Deg;
                 playerModel.transform.rotation = Quaternion.Euler(new Vector3(0, angle + 45, 0));
+
+                //dash
+                if (Input.GetKey(KeyCode.Space) && GetComponent<playerStats>().energy > 0)
+                {
+                    speed = dashSpeed;
+                    GetComponent<playerStats>().dropStat(3, 0);
+                }
+                else
+                {
+                    speed = playerSpeed;
+                    
+                }
+
             }
 
             else
@@ -86,6 +108,7 @@ public class playerController : MonoBehaviour
             {
                 playerAnim.SetInteger("attack", 0);
             }
+
         }
     }
 
