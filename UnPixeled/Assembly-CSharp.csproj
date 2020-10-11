@@ -58,7 +58,7 @@
     <Compile Include="Assets\Scripts\Player\playerInventory.cs" />
     <Compile Include="Assets\Scripts\Player\camera.cs" />
     <Compile Include="Assets\Scripts\Inventory\Inventory.cs" />
-    <Compile Include="Assets\Scripts\NPC\Enemy\EnemyAI_meleeSoul.cs" />
+    <Compile Include="Assets\Scripts\NPC\Enemy\EnemyAI_Soul.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\MultiCellLayout.cs" />
     <Compile Include="Assets\Scripts\Inventory\Item\Item.cs" />
     <Compile Include="Assets\Scripts\NPC\HealthStats_actor.cs" />
@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\GameManagers\GameManager.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\GUIManager.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\FloatingText.cs" />
+    <Compile Include="Assets\Scripts\NPC\Enemy\Projectile.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

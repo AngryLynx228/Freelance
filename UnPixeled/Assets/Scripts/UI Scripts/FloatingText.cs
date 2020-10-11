@@ -1,9 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class FloatingText : MonoBehaviour
 {
+    private void Update()
+    {
+        if (GetComponent<Animation>().isPlaying == false)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public void showText(Transform parent, float value, int colorIndex)
     {
         Color textColor = GameManager.instance.damageColor[colorIndex];

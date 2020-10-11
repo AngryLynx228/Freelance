@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class HealthStats_actor: MonoBehaviour
 {
     // Variables //________________________________________________________________________________________________________________________________________________________________
     public float health = 100;
+    public bool dead = false;
+    Transform currentPos;
 
     FloatingText floatingText;
     playerController player;
@@ -18,9 +21,15 @@ public class HealthStats_actor: MonoBehaviour
 
     private void OnTriggerEnter(Collider other)//____________________________________________________________________________________________________________________________________________________________________________
     {
-        if (other.tag == "Weapon" && player.defenceState == false)
+
+        if (other.tag == "Weapon" && player.defenceState == false && dead == false && health >= 0)
         {
-            healthDamage(25);
+            healthDamage(34);
+        }
+
+        if (other.tag == "Projectile" && other.gameObject.GetComponent<Projectile>().defended == true)
+        {
+            healthDamage(20);
         }
     }
 
@@ -29,18 +38,26 @@ public class HealthStats_actor: MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
-        }//kill enemy
+        }
     }
 
 
 
     // Functions //____________________________________________________________________________________________________________________________________________________________________________
 
-    void healthDamage (float damage)
+    public void healthDamage (float damage)
     {
         floatingText.showText(transform, damage, 1);
 
-        transform.Translate(0, 0, -2);
         health -= damage;
+
+        switch (GetComponent<EnemyAI_Soul>().ai_Type)
+        {
+            case EnemyAI_Soul.AI_Type.melee:
+                GetComponent<NavMeshAgent>().Move(transform.forward * -5);
+                break;
+            case EnemyAI_Soul.AI_Type.range:
+                break;
+        }
     }
 }

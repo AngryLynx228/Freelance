@@ -144,14 +144,11 @@ public class playerController : MonoBehaviour
         if (Input.GetAxis("Block") == 1)
         {
             weaponCollider.enabled = true;
-            defenceState = true;
 
             playerAnim.SetInteger("defence", 1);
         }
         else
         {
-            defenceState = false;
-
             playerAnim.SetInteger("defence", 0);
         }
     }
