@@ -1,38 +1,42 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
 public class playerController : MonoBehaviour
 {
-    //switchers
-    bool enableInput; //enables player inputs
-
-    //Player
-    [SerializeField] public float playerSpeed;
-    [SerializeField] public float dashSpeed;
+    //Variables//__________________________________________________________________________________________________________________________________________________________________________
+    [Header("Player Speed")]
+    [SerializeField] public float playerSpeed; //the speed of players run
+    [SerializeField] public float dashSpeed; //the speed of players dash
     float speed;
-    public GameObject playerModel;
-
-    //Players weapon
-    public GameObject weaponCollider;
-    BoxCollider attackCollider;
-
-    //Player animation
-    Animator playerAnim;
-    CharacterController charController;
+    float moveX, moveZ;
 
 
+    [Header("Engine")]
+    Animator playerAnim; //players animatorscript
+    CharacterController charController; //player CharacterController
+    public GameObject playerModel; //children object with player character for rotation
+    public GameObject weapon; //Weapon attached to hand
+    BoxCollider weaponCollider; //Box collider on weapon for collizion damage to enemies
 
-    private void Start()
+    [Header("States")]
+    public bool enableInput; //enables player inputs bool enableInput; //enables player inputs
+    public bool defenceState; //State of players attack ot defence
+
+
+    
+    private void Start()//__________________________________________________________________________________________________________________________________________________________________________
     {
         //initialize input
         enableInput = true;
         speed = playerSpeed;
 
         //initalize player's weapon
-        attackCollider = weaponCollider.GetComponent<BoxCollider>();
-        attackCollider.enabled = true;
+        weaponCollider = weapon.GetComponent<BoxCollider>();
+        weaponCollider.enabled = false;
+        defenceState = false;
 
         //initialize components
         charController = GetComponent<CharacterController>();
@@ -42,79 +46,113 @@ public class playerController : MonoBehaviour
     }
 
 
-
-    void Update()
+    void Update()//__________________________________________________________________________________________________________________________________________________________________________
     {
-        Debug.Log(speed);
-
-        //inputs
         if (enableInput == true)
         {
-            //WASD Movement_________________________________________________________________________________________________________
-            float moveX = Input.GetAxis("Horizontal");
-            float moveZ = Input.GetAxis("Vertical");
-
-            Vector3 movement = transform.right * moveX + transform.forward * moveZ;
-            movement = movement.normalized * Time.deltaTime;
-
-            charController.Move(movement * speed);
-
-
-            if (Input.GetKey(KeyCode.Space) != true)
-            {
-                GetComponent<playerStats>().addStat(3, 0);
-            }
-
-            //Animation_____________________________________________________________________________________________________________
-            if (moveX != 0 || moveZ != 0)
-            {
-                playerAnim.SetInteger("condition", 1);
-                float angle = Mathf.Atan2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * Mathf.Rad2Deg;
-                playerModel.transform.rotation = Quaternion.Euler(new Vector3(0, angle + 45, 0));
-
-                //dash
-                if (Input.GetKey(KeyCode.Space) && GetComponent<playerStats>().energy > 0)
-                {
-                    speed = dashSpeed;
-                    GetComponent<playerStats>().dropStat(3, 0);
-                }
-                else
-                {
-                    speed = playerSpeed;
-                    
-                }
-
-            }
-
-            else
-            {
-                playerAnim.SetInteger("condition", 0);
-            }
-
-
-            //AttackAnimation
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                attackCollider.enabled = true;
-                playerAnim.SetInteger("attack", 1);
-            }
-
-            else if (Input.GetAxis("Fire1") == 0)
-            {
-                attackCollider.enabled = false;
-            }
-
-            else
-            {
-                playerAnim.SetInteger("attack", 0);
-            }
-
+            inputWASD(); //WASD Movement
+            animationPlayer(); // [ANIMATIONS] movement, rotation, attack, defence
         }
     }
 
+
+
+    //Functions//__________________________________________________________________________________________________________________________________________________________________________
+    
     public void characterDeath (bool switchBool)
     {
         enableInput = switchBool;
         playerModel.SetActive(false);
+    }
+
+    void inputWASD ()
+    {
+        moveX = Input.GetAxis("Horizontal");
+        moveZ = Input.GetAxis("Vertical");
+
+        Vector3 movement = transform.right * moveX + transform.forward * moveZ;
+        movement = movement.normalized * Time.deltaTime;
+
+        charController.Move(movement * speed);
+    }
+
+    void animationPlayer ()
+    {
+        movementAnimations();
+        attackAnimation();
+        defenceAnimation();
+    }
+
+    void playerRotator()
+    {
+        playerAnim.SetInteger("condition", 1);
+        float angle = Mathf.Atan2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * Mathf.Rad2Deg;
+        playerModel.transform.rotation = Quaternion.Euler(new Vector3(0, angle + 45, 0));
+    }
+
+    void PlayerDash()
+    {
+        if (Input.GetKey(KeyCode.Space) && GetComponent<HealthStats_player>().energy > 0)
+        {
+            speed = dashSpeed;
+            GetComponent<HealthStats_player>().dropStat(2, 0); //player stats dash cost
+        }
+        else
+        {
+            speed = playerSpeed;
+        }
+    }
+
+    void movementAnimations()
+    {
+        if (moveX != 0 || moveZ != 0)
+        {
+            playerRotator();
+            PlayerDash();
+        }
+
+        else
+        {
+            playerAnim.SetInteger("condition", 0);
+        }
+    }
+    
+    void attackAnimation()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            weaponCollider.enabled = true;
+            defenceState = false;
+
+            playerAnim.SetInteger("attack", 1);
+        }
+
+        else if (Input.GetAxis("Attack") == 0)
+        {
+            playerAnim.SetInteger("attack", 0);
+            weaponCollider.enabled = false;
+        }
+
+        else
+        {
+            playerAnim.SetInteger("attack", 0);
+        }
+    }
+
+    void defenceAnimation()
+    {
+        if (Input.GetAxis("Block") == 1)
+        {
+            weaponCollider.enabled = true;
+            defenceState = true;
+
+            playerAnim.SetInteger("defence", 1);
+        }
+        else
+        {
+            defenceState = false;
+
+            playerAnim.SetInteger("defence", 0);
+        }
     }
 }

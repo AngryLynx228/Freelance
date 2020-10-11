@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1351821986608748253}
   - component: {fileID: 260174969}
   - component: {fileID: 8747254815426458643}
-  - component: {fileID: 6877846584154931262}
   m_Layer: 8
   m_Name: characterController
   m_TagString: Player
@@ -49,10 +48,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29b28b3bd7af2c240b408568a7aa6ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 15
+  playerSpeed: 20
   dashSpeed: 100
   playerModel: {fileID: 4883045800604731157}
-  weaponCollider: {fileID: 6971157386892405992}
+  weapon: {fileID: 6971157386892405992}
+  defenceState: 0
 --- !u!114 &1351821986608748253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,10 +67,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageText: {fileID: 2662551291732197785, guid: 0dac89b3bea96124498ad3b7078d833b, type: 3}
   health: 100
-  healthRegeneration: 0
+  healthRegeneration: 2
   expirience: 0
   energy: 100
-  energyUseForDash: 100
+  energyUseForDash: 50
   energyRegeneration: 8
 --- !u!54 &260174969
 Rigidbody:
@@ -99,27 +99,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
+  m_Height: 2.79
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &6877846584154931262
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2790081978255780477}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1.18
-  m_Height: 5.1
-  m_Direction: 1
-  m_Center: {x: 0, y: 2.46, z: 0}
+  m_Center: {x: 0, y: 0.27, z: 0}
 --- !u!95 &729971046
 Animator:
   serializedVersion: 3
@@ -240,15 +226,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8968705327025085842, guid: 315f655a3c064ad43b48b727cb7be2d4, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.1
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 8968705327025085842, guid: 315f655a3c064ad43b48b727cb7be2d4, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.1
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 8968705327025085842, guid: 315f655a3c064ad43b48b727cb7be2d4, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.1
+      value: 0.12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 315f655a3c064ad43b48b727cb7be2d4, type: 3}
