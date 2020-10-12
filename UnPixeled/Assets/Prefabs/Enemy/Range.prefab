@@ -50,12 +50,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2cd50380d5bbb84fa1b15c9af430040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookRadius: 35
+  lookRadius: 30
+  shootRadius: 60
   ai_Type: 1
   damage: 15
-  attackDelay: 2
+  attackDelay: 0.5
   projectile: {fileID: 4183246804399279875, guid: 20393a3238cc18745a1f50f6c5f83e67, type: 3}
   pfPojectile: {fileID: 792488543648772600}
+  attackColor: {r: 0, g: 1, b: 0.91672087, a: 1}
+  moveColor: {r: 0.061053753, g: 0.26415092, b: 0.25168005, a: 0}
 --- !u!114 &494994396434057655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,7 +83,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 7
+  m_Speed: 10
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 900

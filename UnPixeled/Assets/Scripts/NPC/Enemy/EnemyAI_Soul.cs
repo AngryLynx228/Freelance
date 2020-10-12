@@ -10,6 +10,7 @@ public class EnemyAI_Soul : MonoBehaviour
     // Variables //________________________________________________________________________________________________________________________________________________________________
     [Header("AI Settings")]
     [SerializeField] public float lookRadius;
+    [SerializeField] public float shootRadius;
     public enum AI_Type { melee, range}
     public AI_Type ai_Type;
 
@@ -24,6 +25,7 @@ public class EnemyAI_Soul : MonoBehaviour
     playerController player;
     NavMeshAgent npc;
     HealthStats_actor hb;
+    Renderer thisRenderer;
 
 
 
@@ -32,6 +34,7 @@ public class EnemyAI_Soul : MonoBehaviour
         player = GameManager.instance.player;
         npc = GetComponent<NavMeshAgent>();
         hb = GetComponent<HealthStats_actor>();
+        thisRenderer = GetComponent<Renderer>();
     }
 
     void Update()//____________________________________________________________________________________________________________________________________________________________________________
@@ -86,10 +89,7 @@ public class EnemyAI_Soul : MonoBehaviour
                 transform.rotation = startTransform.rotation;
 
                 npc.SetDestination(hit.position);
-
                 break;
-
-
         }
     }
 
@@ -112,7 +112,7 @@ public class EnemyAI_Soul : MonoBehaviour
 
                 case AI_Type.range:
 
-                    if (distance <= lookRadius)
+                    if (distance <= shootRadius)
                     {
                         GameObject bullet = Instantiate(projectile, pfPojectile.transform.position, pfPojectile.transform.rotation) as GameObject;
                         bullet.GetComponent<Rigidbody>().AddForce(transform.forward * -1500);
