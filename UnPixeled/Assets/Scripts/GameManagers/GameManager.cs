@@ -1,11 +1,20 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public playerController player;
-    public GUIManager GUI;
+    // Variables //__________________________________________________________________________________________________________________________________________________________________________
+    [SerializeField] public GameObject floatingText;
+
+    
+    [SerializeField] public Color[] damageColor;//Floating text colors
+
+    
+    public playerController player; // player reference in scene
+    public GUIManager GUI; // GUI reference in scene
 
 
 
@@ -24,14 +33,20 @@ void Awake ()
           return;
       }
   
-      DontDestroyOnLoad(gameObject);
+        findObjects();
+        DontDestroyOnLoad(gameObject);
 
-        player = FindObjectOfType<playerController>();
-        GUI = FindObjectOfType<GUIManager>();
-  }
+            
+
+
+
+    }
 
     #endregion
 
-
-    
+    void findObjects()//____________________________________________________________________________________________________________________________________________________________________________
+    {
+        player = FindObjectOfType<playerController>();
+        GUI = FindObjectOfType<GUIManager>();
+    }
 }

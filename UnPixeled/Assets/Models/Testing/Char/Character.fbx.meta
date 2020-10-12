@@ -15,6 +15,12 @@ ModelImporter:
   - first:
       74: -1913233956695805666
     second: Armature|RunAttack
+  - first:
+      74: 7813229291981964257
+    second: Armature|Defense
+  - first:
+      74: -8715291117628711480
+    second: Armature|SteadyDefence
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -35,15 +41,26 @@ ModelImporter:
       to improve retargeting quality.\n\t'stomach' has translation animation that
       will be discarded.\n\t'clavice_r' is inbetween humanoid transforms and has
       rotation animation that will be discarded.\n\t'plevis' has translation animation
-      that will be discarded.\n\nClip 'Armature|Run' has import animation warnings
+      that will be discarded.\n\nClip 'Armature|Defense' has import animation warnings
       that might lower retargeting quality:\nNote: Activate translation DOF on avatar
       to improve retargeting quality.\n\t'stomach' has translation animation that
-      will be discarded.\n\t'plevis' has translation animation that will be discarded.\n\nClip
-      'Armature|RunAttack' has import animation warnings that might lower retargeting
-      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'stomach'
-      has translation animation that will be discarded.\n\t'clavice_r' is inbetween
-      humanoid transforms and has rotation animation that will be discarded.\n\t'plevis'
-      has translation animation that will be discarded.\n"
+      will be discarded.\n\t'clavice_l' is inbetween humanoid transforms and has
+      rotation animation that will be discarded.\n\t'clavice_r' is inbetween humanoid
+      transforms and has rotation animation that will be discarded.\n\t'plevis' has
+      translation animation that will be discarded.\n\nClip 'Armature|Run' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'stomach' has translation
+      animation that will be discarded.\n\t'plevis' has translation animation that
+      will be discarded.\n\nClip 'Armature|RunAttack' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'stomach' has translation animation that
+      will be discarded.\n\t'clavice_r' is inbetween humanoid transforms and has
+      rotation animation that will be discarded.\n\t'plevis' has translation animation
+      that will be discarded.\n\nClip 'Armature|SteadyDefence' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'clavice_l' is inbetween humanoid
+      transforms and has rotation animation that will be discarded.\n\t'clavice_r'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -148,7 +165,7 @@ ModelImporter:
       takeName: Armature|RunAttack
       internalID: 0
       firstFrame: 0
-      lastFrame: 30
+      lastFrame: 20
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -156,6 +173,64 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Defense
+      takeName: Armature|Defense
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|SteadyDefence
+      takeName: Armature|SteadyDefence
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

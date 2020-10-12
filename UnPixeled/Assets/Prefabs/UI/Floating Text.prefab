@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 190093879755431688}
   - component: {fileID: 2662551291732197785}
   - component: {fileID: 5476314429663995474}
+  - component: {fileID: -7810732113239340234}
   m_Layer: 0
   m_Name: Floating Text
   m_TagString: Untagged
@@ -95,7 +96,7 @@ TextMesh:
   m_Font: {fileID: 12800000, guid: afdd03b0c361c244ba2af68d62679d70, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4293984000
+    rgba: 4278223871
 --- !u!111 &5476314429663995474
 Animation:
   m_ObjectHideFlags: 0
@@ -112,3 +113,18 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &-7810732113239340234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 876189347665457975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 379d8b9fbf7dc1341893dea17a7fab77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageColor:
+  - {r: 1, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0.9019608, b: 1, a: 0}
