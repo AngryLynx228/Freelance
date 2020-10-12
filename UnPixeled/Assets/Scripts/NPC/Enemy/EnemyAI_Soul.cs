@@ -10,13 +10,14 @@ public class EnemyAI_Soul : MonoBehaviour
     // Variables //________________________________________________________________________________________________________________________________________________________________
     [Header("AI Settings")]
     [SerializeField] public float lookRadius;
-    [SerializeField] public float shootRadius;
+    [SerializeField] public float runRadius;
     public enum AI_Type { melee, range}
     public AI_Type ai_Type;
 
     [Header("Parameters")]
     [SerializeField] public float damage;
     [SerializeField] public float attackDelay;
+    [SerializeField] public float shootForce;
     [SerializeField] public GameObject projectile;
     [SerializeField] public Transform pfPojectile;
 
@@ -25,7 +26,6 @@ public class EnemyAI_Soul : MonoBehaviour
     playerController player;
     NavMeshAgent npc;
     HealthStats_actor hb;
-    Renderer thisRenderer;
 
 
 
@@ -34,7 +34,6 @@ public class EnemyAI_Soul : MonoBehaviour
         player = GameManager.instance.player;
         npc = GetComponent<NavMeshAgent>();
         hb = GetComponent<HealthStats_actor>();
-        thisRenderer = GetComponent<Renderer>();
     }
 
     void Update()//____________________________________________________________________________________________________________________________________________________________________________
@@ -57,39 +56,39 @@ public class EnemyAI_Soul : MonoBehaviour
     {
         float distance = Vector3.Distance(player.transform.position, transform.position); // Count distance
 
-        if (distance <= lookRadius) // If actor detect player in look raduis
-        {
-            ActorMove(distance);
-            ActorAttack(distance); // Attacks player when in range with delay
-        }
+        ActorMove(distance);
+        ActorAttack(distance);// Attacks player when in range with delay
     }
 
     private void ActorMove(float distance)
     {
-        switch (ai_Type)
+        if (distance <= runRadius) // If actor detect player in look raduis
         {
-            case AI_Type.melee:
+            switch (ai_Type)
+            {
+                case AI_Type.melee:
 
-                npc.SetDestination(player.transform.position);
+                    npc.SetDestination(player.transform.position);
 
-                break;
+                    break;
 
 
 
-            case AI_Type.range:
+                case AI_Type.range:
 
-                Transform startTransform = transform;
-                transform.rotation = Quaternion.LookRotation(transform.position - player.transform.position);
-                Vector3 runTo = transform.position + transform.forward * distance;
+                    Transform startTransform = transform;
+                    transform.rotation = Quaternion.LookRotation(transform.position - player.transform.position);
+                    Vector3 runTo = transform.position + transform.forward * distance;
                 
-                NavMeshHit hit;
-                NavMesh.SamplePosition(runTo, out hit, 5, 1 << NavMesh.GetAreaFromName("Walkable"));
+                    NavMeshHit hit;
+                    NavMesh.SamplePosition(runTo, out hit, 5, 1 << NavMesh.GetAreaFromName("Walkable"));
 
-                transform.position = startTransform.position;
-                transform.rotation = startTransform.rotation;
+                    transform.position = startTransform.position;
+                    transform.rotation = startTransform.rotation;
 
-                npc.SetDestination(hit.position);
-                break;
+                    npc.SetDestination(hit.position);
+                    break;
+            }
         }
     }
 
@@ -112,10 +111,11 @@ public class EnemyAI_Soul : MonoBehaviour
 
                 case AI_Type.range:
 
-                    if (distance <= shootRadius)
+                    if (distance <= lookRadius)
                     {
+                        transform.rotation = Quaternion.LookRotation(transform.position - player.transform.position);
                         GameObject bullet = Instantiate(projectile, pfPojectile.transform.position, pfPojectile.transform.rotation) as GameObject;
-                        bullet.GetComponent<Rigidbody>().AddForce(transform.forward * -1500);
+                        bullet.GetComponent<Rigidbody>().AddForce(transform.forward * -shootForce);
 
                         lastAttacked = Time.time;
                     }

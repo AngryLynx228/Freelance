@@ -12,6 +12,8 @@ ScriptsOnlyBuild:
     - playerController
     NavMeshComponents.dll:
     - UnityEngine.AI.NavMeshSurface
+    NavMeshComponentsEditor.dll:
+    - UnityEditor.AI.NavMeshAssetManager
     Unity.RenderPipelines.Core.Runtime.dll:
     - UnityEngine.Rendering.UI.DebugUIHandlerBitField
     - UnityEngine.Rendering.UI.DebugUIHandlerButton
@@ -44,6 +46,7 @@ ScriptsOnlyBuild:
     - UnityEditor.Rendering.Universal.UniversalProjectSettings
     Unity.RenderPipelines.Universal.Runtime.dll:
     - UnityEngine.Rendering.Universal.Bloom
+    - UnityEngine.Rendering.Universal.ChromaticAberration
     - UnityEngine.Rendering.Universal.FilmGrain
     - UnityEngine.Rendering.Universal.ForwardRendererData
     - UnityEngine.Rendering.Universal.MotionBlur
@@ -161,87 +164,89 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12584}
     - Class: 114
+      Script: {instanceID: 12752}
+    - Class: 114
       Script: {instanceID: 12894}
     - Class: 114
       Script: {instanceID: 12940}
     - Class: 114
       Script: {instanceID: 13000}
     - Class: 114
-      Script: {instanceID: 13124}
+      Script: {instanceID: 13068}
     - Class: 114
-      Script: {instanceID: 13240}
+      Script: {instanceID: 13126}
     - Class: 114
-      Script: {instanceID: 13280}
+      Script: {instanceID: 13242}
     - Class: 114
-      Script: {instanceID: 13458}
+      Script: {instanceID: 13282}
     - Class: 114
-      Script: {instanceID: 13466}
+      Script: {instanceID: 13460}
     - Class: 114
-      Script: {instanceID: 13508}
+      Script: {instanceID: 13468}
     - Class: 114
-      Script: {instanceID: 13572}
+      Script: {instanceID: 13510}
     - Class: 114
-      Script: {instanceID: 13680}
+      Script: {instanceID: 13574}
     - Class: 114
-      Script: {instanceID: 13868}
+      Script: {instanceID: 13682}
     - Class: 114
-      Script: {instanceID: 13940}
+      Script: {instanceID: 13870}
     - Class: 114
-      Script: {instanceID: 13994}
+      Script: {instanceID: 13942}
     - Class: 114
-      Script: {instanceID: 14230}
+      Script: {instanceID: 13996}
     - Class: 114
-      Script: {instanceID: 14270}
+      Script: {instanceID: 14232}
     - Class: 114
-      Script: {instanceID: 14292}
+      Script: {instanceID: 14272}
     - Class: 114
-      Script: {instanceID: 14352}
+      Script: {instanceID: 14294}
     - Class: 114
-      Script: {instanceID: 14372}
+      Script: {instanceID: 14354}
     - Class: 114
-      Script: {instanceID: 14380}
+      Script: {instanceID: 14374}
     - Class: 114
-      Script: {instanceID: 14496}
+      Script: {instanceID: 14382}
     - Class: 114
-      Script: {instanceID: 14532}
+      Script: {instanceID: 14498}
     - Class: 114
-      Script: {instanceID: 14540}
+      Script: {instanceID: 14534}
     - Class: 114
-      Script: {instanceID: 14582}
+      Script: {instanceID: 14542}
     - Class: 114
-      Script: {instanceID: 14808}
+      Script: {instanceID: 14584}
     - Class: 114
-      Script: {instanceID: 14854}
+      Script: {instanceID: 14810}
     - Class: 114
-      Script: {instanceID: 14924}
+      Script: {instanceID: 14856}
     - Class: 114
-      Script: {instanceID: 15170}
+      Script: {instanceID: 14926}
     - Class: 114
-      Script: {instanceID: 15352}
+      Script: {instanceID: 15172}
     - Class: 114
-      Script: {instanceID: 15398}
+      Script: {instanceID: 15354}
     - Class: 114
-      Script: {instanceID: 15512}
+      Script: {instanceID: 15400}
     - Class: 114
-      Script: {instanceID: 15594}
+      Script: {instanceID: 15514}
     - Class: 114
       Script: {instanceID: 15596}
     - Class: 114
-      Script: {instanceID: 15626}
+      Script: {instanceID: 15598}
     - Class: 114
-      Script: {instanceID: 15640}
+      Script: {instanceID: 15628}
     - Class: 114
-      Script: {instanceID: 15652}
+      Script: {instanceID: 15642}
     - Class: 114
-      Script: {instanceID: 15700}
+      Script: {instanceID: 15654}
     - Class: 114
-      Script: {instanceID: 15762}
+      Script: {instanceID: 15702}
     - Class: 114
-      Script: {instanceID: 15780}
+      Script: {instanceID: 15764}
     - Class: 114
-      Script: {instanceID: 15788}
+      Script: {instanceID: 15782}
     - Class: 114
-      Script: {instanceID: 479104}
+      Script: {instanceID: 15790}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -577,6 +582,12 @@ ScriptsOnlyBuild:
     className: UIFoldout
   - hash:
       serializedVersion: 2
+      Hash: e3660e2f85b4927c274589e1df16e2c1
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Projectile
+  - hash:
+      serializedVersion: 2
       Hash: cc4274b586df3c02688bac01b88bd16c
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
@@ -631,7 +642,7 @@ ScriptsOnlyBuild:
     className: UniversalRenderPipelineAsset
   - hash:
       serializedVersion: 2
-      Hash: 902b8cbfe67e173ddf863dce9b8d94a1
+      Hash: 23eb4f9b6158b94fc39d3d149359e694
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: camera
@@ -691,7 +702,7 @@ ScriptsOnlyBuild:
     className: RemoteTestResultSender
   - hash:
       serializedVersion: 2
-      Hash: a520104020a6a2b5cfaf323c7879c5a5
+      Hash: f866066e40c338a003a7e159d1892775
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemyAI_Soul
@@ -871,7 +882,7 @@ ScriptsOnlyBuild:
     className: ShadowsMidtonesHighlights
   - hash:
       serializedVersion: 2
-      Hash: 3ad1b2626cf00693176be2fb95467de3
+      Hash: d9a7fba9270932955e689e2bd5761388
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: playerController
@@ -1169,12 +1180,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: e3660e2f85b4927c274589e1df16e2c1
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Projectile
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity

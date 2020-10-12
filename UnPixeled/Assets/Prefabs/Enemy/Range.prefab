@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2145301827187494374}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.55, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 792488543648772600}
@@ -50,15 +50,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2cd50380d5bbb84fa1b15c9af430040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookRadius: 30
-  shootRadius: 60
+  lookRadius: 35
+  runRadius: 15
   ai_Type: 1
-  damage: 15
+  damage: 10
   attackDelay: 0.5
+  shootForce: 2000
   projectile: {fileID: 4183246804399279875, guid: 20393a3238cc18745a1f50f6c5f83e67, type: 3}
   pfPojectile: {fileID: 792488543648772600}
-  attackColor: {r: 0, g: 1, b: 0.91672087, a: 1}
-  moveColor: {r: 0.061053753, g: 0.26415092, b: 0.25168005, a: 0}
 --- !u!114 &494994396434057655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,7 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ef66d97aa8ccd489d5490916dbfa8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 20
   dead: 0
 --- !u!195 &2145301827187494372
 NavMeshAgent:
@@ -83,8 +82,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 10
-  m_Acceleration: 8
+  m_Speed: 30
+  m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 900
   m_StoppingDistance: 3

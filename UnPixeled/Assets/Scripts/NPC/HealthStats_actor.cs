@@ -22,14 +22,14 @@ public class HealthStats_actor: MonoBehaviour
     private void OnTriggerEnter(Collider other)//____________________________________________________________________________________________________________________________________________________________________________
     {
 
-        if (other.tag == "Weapon" && player.defenceState == false && dead == false && health >= 0)
+        if (other.tag == "Weapon" && health >= 0)
         {
-            healthDamage(34);
+            healthDamage(10);
         }
 
         if (other.tag == "Projectile" && other.gameObject.GetComponent<Projectile>().defended == true)
         {
-            healthDamage(20);
+            healthDamage(10);
         }
     }
 
@@ -54,7 +54,7 @@ public class HealthStats_actor: MonoBehaviour
         switch (GetComponent<EnemyAI_Soul>().ai_Type)
         {
             case EnemyAI_Soul.AI_Type.melee:
-                GetComponent<NavMeshAgent>().Move(transform.forward * -5);
+                GetComponent<NavMeshAgent>().Move(transform.forward * -10);
                 break;
             case EnemyAI_Soul.AI_Type.range:
                 break;

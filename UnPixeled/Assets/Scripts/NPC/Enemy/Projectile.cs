@@ -24,8 +24,16 @@ public class Projectile : MonoBehaviour
     {
         if (other.gameObject.tag == "Weapon")
         {
-            GetComponent<Rigidbody>().AddForce(transform.forward * -2500);
-            defended = true;
+            if (GameManager.instance.player.GetComponent<playerController>().defenceState == true)
+            {
+                GetComponent<Rigidbody>().AddForce(transform.forward * -3000);
+                defended = true;
+            }
+            else
+            {
+                GetComponent<Rigidbody>().AddForce(transform.right * -3000);
+                defended = true;
+            }
         }
     }
 }

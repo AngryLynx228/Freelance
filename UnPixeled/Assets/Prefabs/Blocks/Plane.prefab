@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &707813621704636620
 Transform:
@@ -103,6 +103,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 139d77e97d3ff0048834786a5afe896e, type: 3}
       propertyPath: m_Name
       value: Test Chamaber
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 139d77e97d3ff0048834786a5afe896e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 139d77e97d3ff0048834786a5afe896e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 139d77e97d3ff0048834786a5afe896e, type: 3}

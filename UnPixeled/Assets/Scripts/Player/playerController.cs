@@ -23,7 +23,8 @@ public class playerController : MonoBehaviour
 
     [Header("States")]
     public bool enableInput; //enables player inputs bool enableInput; //enables player inputs
-    public bool defenceState; //State of players attack ot defence
+    public bool defenceState = false; //State of players attack ot defence
+    public bool isDasing = false;
 
 
     
@@ -36,7 +37,6 @@ public class playerController : MonoBehaviour
         //initalize player's weapon
         weaponCollider = weapon.GetComponent<BoxCollider>();
         weaponCollider.enabled = false;
-        defenceState = false;
 
         //initialize components
         charController = GetComponent<CharacterController>();
@@ -71,7 +71,19 @@ public class playerController : MonoBehaviour
         moveZ = Input.GetAxis("Vertical");
 
         Vector3 movement = transform.right * moveX + transform.forward * moveZ;
+
+        if (transform.position.y > 1)
+        {
+            movement.y = -9;
+        }
+        else
+        {
+            movement.y = 0;
+        }
+
         movement = movement.normalized * Time.deltaTime;
+
+        Debug.Log(charController.isGrounded);
 
         charController.Move(movement * speed);
     }
@@ -85,7 +97,6 @@ public class playerController : MonoBehaviour
 
     void playerRotator()
     {
-        playerAnim.SetInteger("condition", 1);
         float angle = Mathf.Atan2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * Mathf.Rad2Deg;
         playerModel.transform.rotation = Quaternion.Euler(new Vector3(0, angle + 45, 0));
     }
@@ -94,11 +105,13 @@ public class playerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space) && GetComponent<HealthStats_player>().energy > 0)
         {
+            isDasing = true;
             speed = dashSpeed;
             GetComponent<HealthStats_player>().dropStat(2, 0); //player stats dash cost
         }
         else
         {
+            isDasing = false;
             speed = playerSpeed;
         }
     }
@@ -109,11 +122,12 @@ public class playerController : MonoBehaviour
         {
             playerRotator();
             PlayerDash();
+            playerAnim.SetInteger("move", 1);
         }
 
         else
         {
-            playerAnim.SetInteger("condition", 0);
+            playerAnim.SetInteger("move", 0);
         }
     }
     
@@ -144,12 +158,14 @@ public class playerController : MonoBehaviour
         if (Input.GetAxis("Block") == 1)
         {
             weaponCollider.enabled = true;
+            defenceState = true;
 
             playerAnim.SetInteger("defence", 1);
         }
         else
         {
             playerAnim.SetInteger("defence", 0);
+            defenceState = false;
         }
     }
 }

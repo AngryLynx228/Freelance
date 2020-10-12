@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Xml.Serialization;
 using UnityEngine;
-using UnityEngine.Rendering;
+
 
 public class HealthStats_player : MonoBehaviour
 {
@@ -53,10 +53,10 @@ public class HealthStats_player : MonoBehaviour
         switch (type)
         {
             case 1:
-                if (health > 0)
+                if (health > 0 && player.isDasing == false)
                 {
-                    health -= value;
-                    floatingText.showText(transform, value, 0);
+                        health -= value;
+                        floatingText.showText(transform, value, 0);
                 }
                 break;
 

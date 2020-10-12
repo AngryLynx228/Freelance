@@ -50,9 +50,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookRadius: 30
+  runRadius: 30
   ai_Type: 0
-  damage: 20
+  damage: 15
   attackDelay: 1
+  shootForce: 0
   projectile: {fileID: 0}
   pfPojectile: {fileID: 0}
 --- !u!114 &494994396434057655
@@ -67,7 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ef66d97aa8ccd489d5490916dbfa8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 40
   dead: 0
 --- !u!195 &2145301827187494372
 NavMeshAgent:
@@ -79,8 +81,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 7
-  m_Acceleration: 8
+  m_Speed: 10
+  m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 900
   m_StoppingDistance: 3
