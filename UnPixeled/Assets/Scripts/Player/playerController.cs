@@ -20,6 +20,7 @@ public class playerController : MonoBehaviour
     public GameObject playerModel; //children object with player character for rotation
     public GameObject weapon; //Weapon attached to hand
     BoxCollider weaponCollider; //Box collider on weapon for collizion damage to enemies
+    public GameObject rightHand;
 
     [Header("States")]
     public bool enableInput; //enables player inputs bool enableInput; //enables player inputs
@@ -33,10 +34,6 @@ public class playerController : MonoBehaviour
         //initialize input
         enableInput = true;
         speed = playerSpeed;
-
-        //initalize player's weapon
-        weaponCollider = weapon.GetComponent<BoxCollider>();
-        weaponCollider.enabled = false;
 
         //initialize components
         charController = GetComponent<CharacterController>();
@@ -83,16 +80,17 @@ public class playerController : MonoBehaviour
 
         movement = movement.normalized * Time.deltaTime;
 
-        Debug.Log(charController.isGrounded);
-
         charController.Move(movement * speed);
     }
 
     void animationPlayer ()
     {
         movementAnimations();
-        attackAnimation();
-        defenceAnimation();
+        if (GetComponent<PlayerEquipment>().weapon1 != null)
+        {
+            attackAnimation();
+            defenceAnimation();
+        }
     }
 
     void playerRotator()
@@ -167,5 +165,11 @@ public class playerController : MonoBehaviour
             playerAnim.SetInteger("defence", 0);
             defenceState = false;
         }
+    }
+
+    public void InitWeapon ()
+    {
+        weaponCollider = weapon.GetComponent<BoxCollider>();
+        weaponCollider.enabled = false;
     }
 }

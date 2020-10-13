@@ -23,7 +23,7 @@ public class EnemyAI_Soul : MonoBehaviour
 
     float lastAttacked = -9999;
 
-    playerController player;
+    playerController playerController;
     NavMeshAgent npc;
     HealthStats_actor hb;
 
@@ -31,7 +31,7 @@ public class EnemyAI_Soul : MonoBehaviour
 
     void Start()//____________________________________________________________________________________________________________________________________________________________________________
     {
-        player = GameManager.instance.player;
+        playerController = GameManager.instance.playerController;
         npc = GetComponent<NavMeshAgent>();
         hb = GetComponent<HealthStats_actor>();
     }
@@ -54,7 +54,7 @@ public class EnemyAI_Soul : MonoBehaviour
 
     private void ActorActions()
     {
-        float distance = Vector3.Distance(player.transform.position, transform.position); // Count distance
+        float distance = Vector3.Distance(playerController.transform.position, transform.position); // Count distance
 
         ActorMove(distance);
         ActorAttack(distance);// Attacks player when in range with delay
@@ -68,7 +68,7 @@ public class EnemyAI_Soul : MonoBehaviour
             {
                 case AI_Type.melee:
 
-                    npc.SetDestination(player.transform.position);
+                    npc.SetDestination(playerController.transform.position);
 
                     break;
 
@@ -77,7 +77,7 @@ public class EnemyAI_Soul : MonoBehaviour
                 case AI_Type.range:
 
                     Transform startTransform = transform;
-                    transform.rotation = Quaternion.LookRotation(transform.position - player.transform.position);
+                    transform.rotation = Quaternion.LookRotation(transform.position - playerController.transform.position);
                     Vector3 runTo = transform.position + transform.forward * distance;
                 
                     NavMeshHit hit;
@@ -101,7 +101,7 @@ public class EnemyAI_Soul : MonoBehaviour
                 case AI_Type.melee:
                     if (distance <= npc.stoppingDistance)
                     {
-                        player.GetComponent<HealthStats_player>().dropStat(1, damage);
+                        playerController.GetComponent<HealthStats_player>().dropStat(1, damage);
                         lastAttacked = Time.time;
                     }
 
@@ -113,7 +113,7 @@ public class EnemyAI_Soul : MonoBehaviour
 
                     if (distance <= lookRadius)
                     {
-                        transform.rotation = Quaternion.LookRotation(transform.position - player.transform.position);
+                        transform.rotation = Quaternion.LookRotation(transform.position - playerController.transform.position);
                         GameObject bullet = Instantiate(projectile, pfPojectile.transform.position, pfPojectile.transform.rotation) as GameObject;
                         bullet.GetComponent<Rigidbody>().AddForce(transform.forward * -shootForce);
 

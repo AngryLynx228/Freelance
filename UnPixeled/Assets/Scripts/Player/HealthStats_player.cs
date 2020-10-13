@@ -10,8 +10,8 @@ public class HealthStats_player : MonoBehaviour
     // Variables //________________________________________________________________________________________________________________________________________________________________
     FloatingText floatingText;
 
-    playerController player;
-    GUIManager GUI;
+    playerController playerController;
+    GUIManager GUIManager;
     public TextMesh damageText;
 
     public float health = 100;
@@ -24,20 +24,20 @@ public class HealthStats_player : MonoBehaviour
 
     private void Start()//____________________________________________________________________________________________________________________________________________________________________________
     {
-        GUI = GameManager.instance.GUI.GetComponent<GUIManager>();
-        player = GameManager.instance.player;
+        GUIManager = GameManager.instance.GUIManager.GetComponent<GUIManager>();
+        playerController = GameManager.instance.playerController;
         floatingText = GameManager.instance.floatingText.GetComponent<FloatingText>();
     }
 
     void Update()//____________________________________________________________________________________________________________________________________________________________________________
     {
-        GUI.HealthBar(health);
-        GUI.EnergyBar(energy);
-        GUI.ExpirienceBar(expirience);
+        GUIManager.HealthBar(health);
+        GUIManager.EnergyBar(energy);
+        GUIManager.ExpirienceBar(expirience);
 
         if (health <= 0)
         {
-            player.GetComponent<playerController>().characterDeath(false);
+            playerController.GetComponent<playerController>().characterDeath(false);
         }
 
         regenerateHealth();
@@ -53,7 +53,7 @@ public class HealthStats_player : MonoBehaviour
         switch (type)
         {
             case 1:
-                if (health > 0 && player.isDasing == false)
+                if (health > 0 && playerController.isDasing == false)
                 {
                         health -= value;
                         floatingText.showText(transform, value, 0);

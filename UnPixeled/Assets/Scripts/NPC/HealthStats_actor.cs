@@ -11,11 +11,11 @@ public class HealthStats_actor: MonoBehaviour
     Transform currentPos;
 
     FloatingText floatingText;
-    playerController player;
+    playerController playerController;
 
     private void Start()//____________________________________________________________________________________________________________________________________________________________________________
     {
-        player = GameManager.instance.player;
+        playerController = GameManager.instance.playerController;
         floatingText = GameManager.instance.floatingText.GetComponent<FloatingText>();
     }
 

@@ -6,7 +6,11 @@ using UnityEngine.UI;
 
 public class MultiCellLayout : MonoBehaviour
 {
-    // Variables //________________________________________________________________________________________________________________________________________________________________
-    public GameObject button;
-    public GameObject inventory;
+    // Variables //__________________________________________________________________________________________________________________________________________________________________________
+    public List<GameObject> inventory;
+
+    void addItem ()
+    {
+
+    }
 }

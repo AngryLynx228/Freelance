@@ -8,13 +8,15 @@ public class GameManager : MonoBehaviour
 {
     // Variables //__________________________________________________________________________________________________________________________________________________________________________
     [SerializeField] public GameObject floatingText;
+    [SerializeField] public GameObject player;
+    [SerializeField] public GameObject gameCamera;
 
     
     [SerializeField] public Color[] damageColor;//Floating text colors
 
     
-    public playerController player; // player reference in scene
-    public GUIManager GUI; // GUI reference in scene
+    [HideInInspector] public playerController playerController; // player reference in scene
+    [HideInInspector] public GUIManager GUIManager; // GUI reference in scene
 
 
 
@@ -32,7 +34,10 @@ void Awake ()
           Destroy(gameObject);
           return;
       }
-  
+
+        Instantiate(player);
+        Instantiate(gameCamera);
+
         findObjects();
         DontDestroyOnLoad(gameObject);
 
@@ -44,9 +49,10 @@ void Awake ()
 
     #endregion
 
+
     void findObjects()//____________________________________________________________________________________________________________________________________________________________________________
     {
-        player = FindObjectOfType<playerController>();
-        GUI = FindObjectOfType<GUIManager>();
+        playerController = FindObjectOfType<playerController>();
+        GUIManager = FindObjectOfType<GUIManager>();
     }
 }
