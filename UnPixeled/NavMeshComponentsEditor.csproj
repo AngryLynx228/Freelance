@@ -55,15 +55,15 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\NavMesh\NavMeshComponents\Editor\NavMeshComponentsGUIUtility.cs" />
-    <Compile Include="Assets\NavMesh\NavMeshComponents\Editor\NavMeshModifierVolumeEditor.cs" />
-    <Compile Include="Assets\NavMesh\NavMeshComponents\Editor\NavMeshLinkEditor.cs" />
-    <Compile Include="Assets\NavMesh\NavMeshComponents\Editor\NavMeshAssetManager.cs" />
-    <Compile Include="Assets\NavMesh\NavMeshComponents\Editor\NavMeshModifierEditor.cs" />
-    <Compile Include="Assets\NavMesh\NavMeshComponents\Editor\NavMeshSurfaceEditor.cs" />
+    <Compile Include="Assets\98. NavMesh\NavMeshComponents\Editor\NavMeshComponentsGUIUtility.cs" />
+    <Compile Include="Assets\98. NavMesh\NavMeshComponents\Editor\NavMeshModifierVolumeEditor.cs" />
+    <Compile Include="Assets\98. NavMesh\NavMeshComponents\Editor\NavMeshLinkEditor.cs" />
+    <Compile Include="Assets\98. NavMesh\NavMeshComponents\Editor\NavMeshAssetManager.cs" />
+    <Compile Include="Assets\98. NavMesh\NavMeshComponents\Editor\NavMeshModifierEditor.cs" />
+    <Compile Include="Assets\98. NavMesh\NavMeshComponents\Editor\NavMeshSurfaceEditor.cs" />
   </ItemGroup>
   <ItemGroup>
-     <None Include="Assets\NavMesh\NavMeshComponents\Editor\NavMeshComponentsEditor.asmdef" />
+     <None Include="Assets\98. NavMesh\NavMeshComponents\Editor\NavMeshComponentsEditor.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>D:\Unity\2020.1.8f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

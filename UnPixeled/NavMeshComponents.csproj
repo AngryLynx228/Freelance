@@ -55,13 +55,13 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\NavMesh\NavMeshComponents\Scripts\NavMeshModifier.cs" />
-    <Compile Include="Assets\NavMesh\NavMeshComponents\Scripts\NavMeshLink.cs" />
-    <Compile Include="Assets\NavMesh\NavMeshComponents\Scripts\NavMeshModifierVolume.cs" />
-    <Compile Include="Assets\NavMesh\NavMeshComponents\Scripts\NavMeshSurface.cs" />
+    <Compile Include="Assets\98. NavMesh\NavMeshComponents\Scripts\NavMeshModifier.cs" />
+    <Compile Include="Assets\98. NavMesh\NavMeshComponents\Scripts\NavMeshLink.cs" />
+    <Compile Include="Assets\98. NavMesh\NavMeshComponents\Scripts\NavMeshModifierVolume.cs" />
+    <Compile Include="Assets\98. NavMesh\NavMeshComponents\Scripts\NavMeshSurface.cs" />
   </ItemGroup>
   <ItemGroup>
-     <None Include="Assets\NavMesh\NavMeshComponents\Scripts\NavMeshComponents.asmdef" />
+     <None Include="Assets\98. NavMesh\NavMeshComponents\Scripts\NavMeshComponents.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>D:\Unity\2020.1.8f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
