@@ -1,126 +1,89 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.ExceptionServices;
+using System.ComponentModel;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
-{
-    public List<ItemData> inventory;
-    public List<int> inventoryCount;
-    public ItemData test1;///delete this
-    public ItemData test2;///delete this
 
+[System.Serializable]
+public class InventorySlot
+{
+    public ItemData item;
+    public int count;
+
+    public InventorySlot(ItemData _item)
+    {
+        item = _item;
+        count = _item.count;
+    }
+
+    public void AddCount(int _value)
+    {
+        count += _value;
+    }
+}
+
+[CreateAssetMenu(fileName = "New ItemData", menuName = "Inventory System/Inventory", order = 51)]
+public class Inventory : ScriptableObject
+{
+    public List<InventorySlot> container = new List<InventorySlot>();
     public enum InventoryActions
     {
-        addItem,
-        removeItem,
-        useItem
+        add,
+        remove
     }
-    [HideInInspector] public InventoryActions inventoryActions;
+    public InventoryActions iAction;
 
 
-    private void Update()
-    { 
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            InventoryAction(InventoryActions.addItem, test1);
-        }
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            InventoryAction(InventoryActions.addItem, test2);
-        }
-    }
-
-    public void InventoryAction (InventoryActions action, ItemData item)
+    public void InventoryAction(InventoryActions _iAction, ItemData _item)
     {
-        switch (action)
+        switch (_iAction)
         {
-            case InventoryActions.addItem:
-                AddItem(item);
+            case InventoryActions.add:
+                AddItem(_item, _item.count);
                 break;
-            case InventoryActions.removeItem:
-                RemoveItem(item);
-                break;
-            case InventoryActions.useItem:
-
+            case InventoryActions.remove:
                 break;
             default:
                 break;
         }
     }
 
-    void AddItem (ItemData item)
+    public void AddItem (ItemData _item, int _count)
     {
-        if (item.stackable == true && CheckSlot(item) == true)
+        bool hasItem = false;
+        for (int i = 0; i < container.Count; i++)
         {
-            inventoryCount[StackIndex(item)] += item.Count;
-
-            Debug.Log("______Stacked______");
-            for (int b = 0; b < inventory.Count; b++)
+            if (container[i].item == _item && _item.stackable)
             {
-                Debug.Log((inventory[b].itemName, inventoryCount[b], b));
+                container[i].AddCount(_count);
+                GameManager.instance.GUIManager.AddCount(_item, container[i].count);
+
+                hasItem = true;
+                break;
             }
         }
-        else
+        if (!hasItem)
         {
-            inventory.Add(item);
-            inventoryCount.Add(item.Count);
-
-            Debug.Log("_______Added_______");
-            for (int b = 0; b < inventory.Count; b++)
-            {
-                Debug.Log((inventory[b].itemName, inventoryCount[b], b));
-            }
+            container.Add(new InventorySlot(_item));
+            GameManager.instance.GUIManager.AddSlot(_item, _item.count);
         }
     }
 
-    void RemoveItem(ItemData item)
+    public void RemoveItem(ItemData _item, int _count)
     {
-        if (CheckSlot(item) == true && inventoryCount[StackIndex(item)] > 1)
+        for (int i = 0; i < container.Count; i++)
         {
-            inventoryCount[StackIndex(item)] -= 1;
-            Debug.Log("_______Removed - 1 ________");
-            for (int b = 0; b < inventory.Count; b++)
+            if (container[i].item.itemName == _item.itemName)
             {
-                Debug.Log((inventory[b].itemName, inventoryCount[b], b));
+                if (container[i].count > 1)
+                {
+                    container[i].count -= _count;
+                }
+                else
+                {
+                    container.RemoveAt(i);
+                }
             }
         }
-        else
-        {
-            inventory.RemoveAt(StackIndex(item));
-            inventoryCount.RemoveAt(StackIndex(item));
-
-            Debug.Log("_______Removed Compleetly________");
-            for (int b = 0; b < inventory.Count; b++)
-            {
-                Debug.Log((inventory[b].itemName, inventoryCount[b], b));
-            }
-        }
-    }
-
-    bool CheckSlot(ItemData item)
-    {
-        bool stack = false;
-        for (int i = 0; i < inventory.Count; i++)
-        {
-            if (item.itemName == inventory[i].itemName)
-            {
-                stack = true;
-            }
-        }
-        return stack;
-    }
-
-    int StackIndex(ItemData item)
-    {
-        int index = 0;
-        for (int i = 0; i < inventory.Count; i++)
-        {
-            if (item.itemName == inventory[i].itemName)
-            {
-                index = i;
-            }
-        }
-        return index;
     }
 }

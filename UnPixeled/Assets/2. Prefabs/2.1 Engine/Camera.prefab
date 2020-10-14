@@ -149,6 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smoothSpeed: 7
   offset: {x: -13, y: 34, z: -13}
+  volume: {fileID: 0}
 --- !u!1001 &872395221436912235
 PrefabInstance:
   m_ObjectHideFlags: 0

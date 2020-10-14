@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New ItemData", menuName = "New Item", order = 51)]
+[CreateAssetMenu(fileName = "New ItemData", menuName = "Inventory System/Item", order = 51)]
 public class ItemData : ScriptableObject
 {
     public Sprite itemIcon;

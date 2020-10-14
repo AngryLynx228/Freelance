@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 2790081978255780472}
   - component: {fileID: 2297682110258011930}
   - component: {fileID: 1351821986608748253}
-  - component: {fileID: 4039025481863211944}
-  - component: {fileID: 1172727843695285746}
   - component: {fileID: 8747254815426458643}
   m_Layer: 8
   m_Name: characterController
@@ -54,6 +52,10 @@ MonoBehaviour:
   playerModel: {fileID: 4883045800604731157}
   weaponCollider: {fileID: 0}
   rightHand: {fileID: 3605666003247711309}
+  playerInventory: {fileID: 11400000, guid: 877eec8ff69fd0449a4b8e2fb48d66af, type: 2}
+  playerEquipment: {fileID: 11400000, guid: da9139e436080a1468f1c11be7ef4896, type: 2}
+  test1: {fileID: 11400000, guid: 5b5619cac7f70174fa7a840e9c156db1, type: 2}
+  test2: {fileID: 11400000, guid: 8260c300e4eaf6f49b7c7d9af08c2a70, type: 2}
   enableInput: 0
   defenceState: 0
   isDasing: 0
@@ -76,38 +78,6 @@ MonoBehaviour:
   energy: 100
   energyUseForDash: 50
   energyRegeneration: 8
---- !u!114 &4039025481863211944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2790081978255780477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 896106a6cacf4db41812e6b677fa6ca0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventory: []
-  inventoryCount: 
-  test1: {fileID: 11400000, guid: 5b5619cac7f70174fa7a840e9c156db1, type: 2}
-  test2: {fileID: 11400000, guid: 8260c300e4eaf6f49b7c7d9af08c2a70, type: 2}
-  inventoryActions: 0
---- !u!114 &1172727843695285746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2790081978255780477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9111837a770568d48811376ea5dd2680, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponSlot: {fileID: 0}
-  weapon: {fileID: 0}
-  equpmentActions: 0
 --- !u!143 &8747254815426458643
 CharacterController:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject player;
     [SerializeField] public GameObject gameCamera;
 
+
     
     [SerializeField] public Color[] damageColor;//Floating text colors
 

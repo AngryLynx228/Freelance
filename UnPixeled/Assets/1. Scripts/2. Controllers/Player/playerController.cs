@@ -20,6 +20,10 @@ public class playerController : MonoBehaviour
     public GameObject playerModel; //children object with player character for rotation
     public BoxCollider weaponCollider; //Box collider on weapon for collizion damage to enemies
     public GameObject rightHand;
+    public Inventory playerInventory;
+    public Equipment playerEquipment;
+    public ItemData test1;
+    public ItemData test2;
 
     [Header("States")]
     public bool enableInput; //enables player inputs bool enableInput; //enables player inputs
@@ -49,17 +53,29 @@ public class playerController : MonoBehaviour
 
     void Update()//__________________________________________________________________________________________________________________________________________________________________________
     {
+        
         if (enableInput == true)
         {
             inputWASD(); //WASD Movement
             animationPlayer(); // [ANIMATIONS] movement, rotation, attack, defence
         }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            playerInventory.InventoryAction(Inventory.InventoryActions.add, test1);
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            playerInventory.InventoryAction(Inventory.InventoryActions.add, test2);
+        }
     }
 
-
+    private void OnApplicationQuit()
+    {
+        playerInventory.container.Clear();
+    }
 
     //Functions//__________________________________________________________________________________________________________________________________________________________________________
-    
+
     public void characterDeath (bool switchBool)
     {
         enableInput = switchBool;
@@ -89,11 +105,12 @@ public class playerController : MonoBehaviour
 
     void animationPlayer ()
     {
-        if (GetComponent<PlayerEquipment>().weapon != null)
+        if (weaponCollider != null)
         {
             attackAnimation();
             defenceAnimation();
         }
+        
         movementAnimations();
     }
 

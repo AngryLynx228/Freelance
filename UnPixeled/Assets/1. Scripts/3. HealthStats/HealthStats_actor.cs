@@ -8,14 +8,11 @@ public class HealthStats_actor: MonoBehaviour
     // Variables //________________________________________________________________________________________________________________________________________________________________
     public float health = 100;
     public bool dead = false;
-    Transform currentPos;
 
     FloatingText floatingText;
-    playerController playerController;
 
     private void Start()//____________________________________________________________________________________________________________________________________________________________________________
     {
-        playerController = GameManager.instance.playerController;
         floatingText = GameManager.instance.floatingText.GetComponent<FloatingText>();
     }
 
