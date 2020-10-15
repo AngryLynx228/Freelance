@@ -12,6 +12,7 @@ public class GUIManager : MonoBehaviour
     [SerializeField] public GameObject itemSlotPrefab;
     [SerializeField] public GameObject inventoryHolder;
     [SerializeField] public GameObject InventoryPannell;
+    [SerializeField] public Sprite defaultItemIcon;
     bool InventoryEnabled = false;
     public List<GameObject> inventoryHolerItems;
 
@@ -49,6 +50,8 @@ public class GUIManager : MonoBehaviour
         expirienceBar.value = ammount;
     }
 
+
+    // Inventory and equipment
     public void AddSlot (ItemData _item, int _count)
     {
         GameObject newItemDataSlot = Instantiate(itemSlotPrefab, inventoryHolder.transform);

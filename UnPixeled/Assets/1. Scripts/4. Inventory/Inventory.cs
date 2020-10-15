@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 
-
 [System.Serializable]
-public class InventorySlot
+public class InventorySlot //Реализация колличества предмета с помощью доп структуры
 {
     public ItemData item;
     public int count;
@@ -23,15 +22,18 @@ public class InventorySlot
 }
 
 [CreateAssetMenu(fileName = "New ItemData", menuName = "Inventory System/Inventory", order = 51)]
+
 public class Inventory : ScriptableObject
 {
-    public List<InventorySlot> container = new List<InventorySlot>();
     public enum InventoryActions
     {
         add,
         remove
     }
     public InventoryActions iAction;
+
+    public List<InventorySlot> container = new List<InventorySlot>();//Массив предметов
+
 
 
     public void InventoryAction(InventoryActions _iAction, ItemData _item)
@@ -42,6 +44,7 @@ public class Inventory : ScriptableObject
                 AddItem(_item, _item.count);
                 break;
             case InventoryActions.remove:
+                RemoveItem(_item, _item.count);
                 break;
             default:
                 break;

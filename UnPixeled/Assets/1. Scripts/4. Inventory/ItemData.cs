@@ -5,11 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New ItemData", menuName = "Inventory System/Item", order = 51)]
 public class ItemData : ScriptableObject
 {
-    public Sprite itemIcon;
-    public string itemName;
-    public bool stackable;
-    public int count;
-    public enum ItemType
+    public GameObject prefab;
+    public Sprite itemIcon; // Иконка
+    public string itemName; // Название
+    public bool stackable; // Стакуется?
+    public int count; // Количество
+    public enum ItemType // Тип предмета
     {
         etc,
         weapon,
@@ -17,7 +18,7 @@ public class ItemData : ScriptableObject
         consumable
     }
     public ItemType itemType;
-    public GameObject prefab;
+
     
 
     public Sprite ItemIcon

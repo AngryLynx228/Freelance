@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2297682110258011930}
   - component: {fileID: 1351821986608748253}
   - component: {fileID: 8747254815426458643}
+  - component: {fileID: 2053573512283788562}
   m_Layer: 8
   m_Name: characterController
   m_TagString: Player
@@ -96,6 +97,19 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 2, z: 0}
+--- !u!135 &2053573512283788562
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2790081978255780477}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &729971046
 Animator:
   serializedVersion: 3

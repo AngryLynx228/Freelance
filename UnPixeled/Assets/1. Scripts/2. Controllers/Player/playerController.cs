@@ -50,6 +50,17 @@ public class playerController : MonoBehaviour
         playerAnim = playerModel.GetComponent<Animator>();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Weapon")
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                playerInventory.InventoryAction(Inventory.InventoryActions.add, other.GetComponent<ItemDataSlot>().item);
+                Destroy(other.gameObject);
+            }
+        }
+    }
 
     void Update()//__________________________________________________________________________________________________________________________________________________________________________
     {
@@ -72,6 +83,7 @@ public class playerController : MonoBehaviour
     private void OnApplicationQuit()
     {
         playerInventory.container.Clear();
+        playerEquipment.weaponSlot = null;
     }
 
     //Functions//__________________________________________________________________________________________________________________________________________________________________________

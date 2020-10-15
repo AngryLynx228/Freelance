@@ -1,20 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 
 //[CreateAssetMenu(fileName = "New ItemData", menuName = "Inventory System/Equipment", order = 51)]
 public class Equipment : ScriptableObject
 {
-    public ItemData weaponSlot;
-    public GameObject weapon;
-
     public enum EquipmentActions
     {
         equip,
-        upequip,
-        swap
+        upequip
     }
     EquipmentActions equipmentActions;
+
+
+    [Header("EqupmentSlots")]
+    public ItemData weaponSlot; //Слот для оружия
+
+
 
     public void EquipmentAction (EquipmentActions action, ItemData _item)
     {
@@ -25,8 +28,6 @@ public class Equipment : ScriptableObject
                 break;
             case EquipmentActions.upequip:
                 UpEqip(_item);
-                break;
-            case EquipmentActions.swap:
                 break;
             default:
                 break;
@@ -41,12 +42,28 @@ public class Equipment : ScriptableObject
                 break;
 
             case ItemData.ItemType.weapon:
-                weaponSlot = _item;
-                weapon = _item.prefab;
-                Instantiate(weapon, GameManager.instance.playerController.rightHand.transform);
-                GameManager.instance.playerController.weaponCollider = GameManager.instance.playerController.rightHand.transform.GetChild(0).GetComponent<BoxCollider>();
-                GameManager.instance.playerController.weaponCollider.enabled = false;
-                GameManager.instance.GUIManager.AddEquip(_item);
+                if (weaponSlot == null)
+                {
+                    weaponSlot = _item; //запись оружия в слот
+                    Instantiate(_item.prefab, GameManager.instance.playerController.rightHand.transform);//создание оружия в руке
+                    GameManager.instance.playerController.weaponCollider = GameManager.instance.playerController.rightHand.transform.GetChild(0).GetComponent<BoxCollider>();//установка коллайдера оружия
+                    GameManager.instance.playerController.weaponCollider.enabled = false;//отключение коллайдера оружия
+                    GameManager.instance.GUIManager.AddEquip(_item);//перенос оружия в слот экипировки
+                    GameManager.instance.playerController.playerInventory.InventoryAction(Inventory.InventoryActions.remove, _item);
+                    Debug.Log(GameManager.instance.playerController.rightHand.transform.GetChild(0).GetComponent<BoxCollider>());
+                }
+                else
+                {
+                    if (weaponSlot.itemName == _item.itemName)
+                    {
+                        UpEqip(weaponSlot);
+                    }
+                    else
+                    {
+                        EquipmentAction(EquipmentActions.equip, _item);
+                    }
+                }
+
                 break;
 
             case ItemData.ItemType.armour:
@@ -68,8 +85,10 @@ public class Equipment : ScriptableObject
                 break;
 
             case ItemData.ItemType.weapon:
-                GameManager.instance.playerController.weaponCollider = null;
-                Destroy(GameManager.instance.playerController.rightHand.transform.GetChild(0).gameObject);
+                    GameManager.instance.playerController.playerInventory.InventoryAction(Inventory.InventoryActions.add, weaponSlot);
+                    Destroy(GameManager.instance.playerController.rightHand.transform.GetChild(0).gameObject);//уничтожение оружия в руке
+                    GameManager.instance.playerController.weaponCollider = null;//установка коллайдера в ноль
+                    weaponSlot = null;
                 break;
 
             case ItemData.ItemType.armour:

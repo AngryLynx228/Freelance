@@ -3,45 +3,49 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class ItemDataSlot : MonoBehaviour
 {
-    public bool equipped;
+    public bool equipmentSlot;
+    public bool inInventory;
     public ItemData item;
     public GameObject text;
     public int count = 0;
 
-    public void setData (ItemData _item, int _count, bool _eqipped)
+
+
+    public void setData (ItemData _item, int _count, bool _inInventory)
     {
         if (_item != null)
         {
             item = _item;
             count = _count;
-            equipped = _eqipped;
-            text.GetComponent<Text>().text = _item.itemName;
+            GetComponent<Image>().sprite = _item.itemIcon;
+            text.GetComponent<Text>().text = _item.itemName;        //(count.ToString())
         }
-        //(count.ToString())
+        else
+        {
+            GetComponent<Image>().sprite = GameManager.instance.GUIManager.defaultItemIcon;
+        }
     }
 
     public void OnClicked ()
     {
-        if (equipped)
+        GameManager.instance.playerController.playerEquipment.EquipmentAction(Equipment.EquipmentActions.equip, item);
+
+
+        if (equipmentSlot)
         {
-            GameManager.instance.playerController.playerEquipment.EquipmentAction(Equipment.EquipmentActions.upequip, item);
-            GameManager.instance.playerController.playerInventory.InventoryAction(Inventory.InventoryActions.add, item);
+            text.GetComponent<Text>().text = "";
+            setData(null, 0, false);
         }
         else
         {
-            GameManager.instance.playerController.playerEquipment.EquipmentAction(Equipment.EquipmentActions.equip, item);
-        }
-
-
-        if (count == 1)
-        {
-            if (equipped)
+            if (count > 1)
             {
-                text.GetComponent<Text>().text = "";
-                setData(null, 0, false);
+
             }
             else
             {

@@ -51,7 +51,7 @@ public class HealthStats_actor: MonoBehaviour
         switch (GetComponent<EnemyAI_Soul>().ai_Type)
         {
             case EnemyAI_Soul.AI_Type.melee:
-                GetComponent<NavMeshAgent>().Move(transform.forward * -10);
+                GetComponent<NavMeshAgent>().Move(transform.forward * -5);
                 break;
             case EnemyAI_Soul.AI_Type.range:
                 break;
