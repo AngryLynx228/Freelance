@@ -56,7 +56,7 @@ MonoBehaviour:
   playerInventory: {fileID: 11400000, guid: 877eec8ff69fd0449a4b8e2fb48d66af, type: 2}
   playerEquipment: {fileID: 11400000, guid: da9139e436080a1468f1c11be7ef4896, type: 2}
   test1: {fileID: 11400000, guid: 5b5619cac7f70174fa7a840e9c156db1, type: 2}
-  test2: {fileID: 11400000, guid: 8260c300e4eaf6f49b7c7d9af08c2a70, type: 2}
+  test2: {fileID: 11400000, guid: 59d22275d764afe40848fd6d3afedf79, type: 2}
   enableInput: 0
   defenceState: 0
   isDasing: 0
