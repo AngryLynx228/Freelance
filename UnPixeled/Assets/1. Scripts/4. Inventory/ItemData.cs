@@ -19,6 +19,9 @@ public class ItemData : ScriptableObject
     }
     public ItemType itemType;
 
+    public float weaponDamage;
+    public float critChance;
+
     
 
     public Sprite ItemIcon
@@ -58,6 +61,22 @@ public class ItemData : ScriptableObject
         get
         {
             return prefab;
+        }
+    }
+
+    public float WeaponDamage
+    {
+        get
+        {
+            return weaponDamage;
+        }
+    }
+
+    public float CritChance
+    {
+        get
+        {
+            return critChance;
         }
     }
 }

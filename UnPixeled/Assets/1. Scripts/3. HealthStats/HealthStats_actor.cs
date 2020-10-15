@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -18,15 +19,28 @@ public class HealthStats_actor: MonoBehaviour
 
     private void OnTriggerEnter(Collider other)//____________________________________________________________________________________________________________________________________________________________________________
     {
+        float damage = 0;
+
+        if (GameManager.instance.playerController.playerEquipment.weaponSlot != null)
+        {
+            if (UnityEngine.Random.Range(0, 100) <= GameManager.instance.playerController.playerEquipment.weaponSlot.CritChance)
+            {
+                damage = GameManager.instance.playerController.playerEquipment.weaponSlot.WeaponDamage * 2;
+            }
+            else
+            {
+                damage = GameManager.instance.playerController.playerEquipment.weaponSlot.WeaponDamage;
+            }
+        }
 
         if (other.tag == "Weapon" && health >= 0)
         {
-            healthDamage(10);
+            healthDamage(damage);
         }
 
         if (other.tag == "Projectile" && other.gameObject.GetComponent<Projectile>().defended == true)
         {
-            healthDamage(10);
+            healthDamage(damage);
         }
     }
 

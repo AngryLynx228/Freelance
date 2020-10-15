@@ -18,3 +18,5 @@ MonoBehaviour:
   stackable: 0
   count: 1
   itemType: 1
+  weaponDamage: 10
+  critChance: 10
